@@ -1,0 +1,22 @@
+# Dependencies
+/node_modules/
+
+# Next.js and generated output
+/.next/
+/out/
+/build/
+/dist/
+/coverage/
+
+# Local environment; examples may be committed
+.env*
+!.env.example
+
+# Logs and local tooling
+*.log
+.vercel/
+.sites-runtime/
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+next-env.d.ts
