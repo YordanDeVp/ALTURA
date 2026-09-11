@@ -1,0 +1,89 @@
+/* Canonical ALTURA tokens from DESIGN.md. */
+:root {
+  color-scheme: light;
+
+  --color-ink: #111411;
+  --color-snow: #f5f6f2;
+  --color-white: #ffffff;
+  --color-studio: #e8ebe5;
+  --color-muted-light: #596057;
+  --color-muted-dark: #b6bdb2;
+  --color-rule-light: #ccd2c7;
+  --color-rule-dark: #444c41;
+  --color-control-light: #7a8376;
+  --color-control-dark: #899282;
+  --color-panel: #1c231b;
+  --color-lime: #d3ff3f;
+
+  --surface-page: var(--color-snow);
+  --surface-product: var(--color-studio);
+  --surface-dark: var(--color-ink);
+  --surface-dark-raised: var(--color-panel);
+  --text-primary: var(--color-ink);
+  --text-secondary: var(--color-muted-light);
+  --text-inverse: var(--color-snow);
+  --action-fill: var(--color-lime);
+  --action-text: var(--color-ink);
+  --focus-on-light: var(--color-ink);
+  --focus-on-dark: var(--color-lime);
+
+  /* Replace with approved local font assets when available. */
+  --font-display: "Arial Narrow", Impact, sans-serif;
+  --font-body: Arial, "Helvetica Neue", system-ui, sans-serif;
+  --weight-regular: 400;
+  --weight-medium: 600;
+  --weight-display: 700;
+  --text-caption: 0.8125rem;
+  --text-nav: 0.9375rem;
+  --text-body: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --text-product: clamp(1.75rem, 1.2rem + 1.6vw, 2.75rem);
+  --text-section: clamp(2.5rem, 1.3rem + 4vw, 5.5rem);
+  --text-hero: clamp(3.5rem, 1.5rem + 7vw, 8.5rem);
+  --leading-hero: 0.95;
+  --leading-heading: 1.05;
+  --leading-body: 1.6;
+  --tracking-display: -0.025em;
+  --tracking-label: 0.12em;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-28: 112px;
+
+  --content-max: 1440px;
+  --page-gutter: clamp(20px, 5vw, 72px);
+  --section-padding: clamp(56px, 8vw, 112px);
+  --grid-gap: clamp(24px, 2.2vw, 32px);
+  --nav-height: 72px;
+  --radius-button: 2px;
+  --radius-panel: 0px;
+  --radius-circle: 50%;
+  --control-height: 48px;
+  --touch-target: 44px;
+
+  --duration-fast: 160ms;
+  --duration-reveal: 420ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 47.99rem) {
+  :root {
+    --nav-height: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-reveal: 0ms;
+  }
+}

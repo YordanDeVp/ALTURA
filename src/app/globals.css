@@ -1,0 +1,70 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+/* Semantic utilities map to the canonical tokens without repeating values. */
+@theme inline {
+  --color-background: var(--surface-page);
+  --color-foreground: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-muted-inverse: var(--color-muted-dark);
+  --color-inverse: var(--text-inverse);
+  --color-product: var(--surface-product);
+  --color-dark: var(--surface-dark);
+  --color-dark-panel: var(--surface-dark-raised);
+  --color-accent: var(--action-fill);
+  --color-accent-foreground: var(--action-text);
+  --color-divider: var(--color-rule-light);
+  --color-divider-inverse: var(--color-rule-dark);
+  --color-outline: var(--color-control-light);
+  --color-outline-inverse: var(--color-control-dark);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
+  --text-copy: var(--text-body);
+  --text-copy--line-height: var(--leading-body);
+  --text-eyebrow: var(--text-caption);
+  --text-display: var(--text-hero);
+  --text-display--line-height: var(--leading-hero);
+  --text-display--letter-spacing: var(--tracking-display);
+  --text-heading: var(--text-section);
+  --text-heading--line-height: var(--leading-heading);
+  --text-heading--letter-spacing: var(--tracking-display);
+  --text-product-title: var(--text-product);
+  --text-product-title--line-height: var(--leading-heading);
+  --tracking-chapter: var(--tracking-label);
+
+  --container-content: var(--content-max);
+  --spacing-gutter: var(--page-gutter);
+  --spacing-section: var(--section-padding);
+  --spacing-nav: var(--nav-height);
+  --spacing-control: var(--control-height);
+  --radius-control: var(--radius-button);
+  --radius-surface: var(--radius-panel);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+  }
+
+  body {
+    margin: 0;
+    line-height: var(--leading-body);
+  }
+
+  ::selection {
+    color: var(--action-text);
+    background-color: var(--action-fill);
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
