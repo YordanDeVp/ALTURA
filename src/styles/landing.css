@@ -67,6 +67,9 @@ a { text-decoration: none; }
 .discipline-section { padding-block: 96px 120px; border-top: 1px solid var(--color-rule-light); }
 .section-intro { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 42px; }
 .section-intro .display-heading { margin-top: 24px; }
+.sport-jump-nav { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 24px; }
+.sport-jump-nav a { display: inline-flex; align-items: center; min-height: 44px; border-bottom: 1px solid var(--color-rule-light); color: var(--color-muted-light); font-size: .8125rem; transition: color var(--duration-fast), border-color var(--duration-fast); }
+.sport-jump-nav a:hover { color: var(--color-ink); border-color: var(--color-ink); }
 .section-aside { padding-bottom: 8px; font-size: 1rem; line-height: 1.6; color: var(--color-muted-light); }
 .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 .product-image { position: relative; display: block; overflow: hidden; aspect-ratio: 3 / 4; background: #e7e9e5; }
@@ -205,6 +208,7 @@ html:has(.product-dialog[open]) { overflow: hidden; }
   .discipline-section { padding-block: 64px 80px; }
   .section-intro { align-items: start; margin-bottom: 30px; }
   .section-intro .display-heading { font-size: clamp(2.8rem, 8vw, 4.2rem); }
+  .sport-jump-nav { gap: 4px 12px; margin-top: 16px; }
   .section-aside { display: none; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 20px; }
   .product-card h3 { font-size: 1.5rem; }

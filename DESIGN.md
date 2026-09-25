@@ -121,6 +121,8 @@ Only render color choices when there are corresponding approved images or actual
 
 **Purpose:** extend the snowboard collection into six additional extreme sports without changing the alpine hero or the fourth chapter's snowboard action scene.
 
+At the top of the collection, provide a compact text index for Snowboard and all six sports. Each link jumps to its product card; links wrap naturally on mobile and remain keyboard accessible.
+
 **Copy:** **NUEVAS LÍNEAS** and **Cada terreno. Su propia línea.**
 
 **Concept garments:** Sudadera Street for skateboarding, Chaqueta Coastline for longboard, Traje Break for surf, Shorts Current for wakeboard, Chaqueta Summit for skiing, and Camiseta Drift for kitesurf. These are apparel concepts, not replacements for each sport's board, helmet, protective gear, flotation equipment, or other essential equipment.

@@ -7,7 +7,7 @@ import { ArrowIcon, ExpandIcon } from "@/components/icons";
 
 function ProductCard({ product, onSelect }) {
   return (
-    <article className="product-card">
+    <article id={`product-${product.id}`} className="product-card">
       <a className="product-image" href="#detalles" aria-label={`${product.number} / ${product.sport || "ALTURA"} — Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>
         <Image src={product.image} alt={product.alt} fill sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw" />
         <span className="product-index">{product.number} / {product.sport || "ALTURA"}</span>
@@ -43,6 +43,12 @@ export default function ProductExperience({ products, extremeProducts }) {
           <div>
             <p className="eyebrow"><span>03</span> LA COLECCIÓN</p>
             <h2 id="collection-heading" className="display-heading">Equipa tu<br />próxima línea.</h2>
+            <nav className="sport-jump-nav" aria-label="Explorar por deporte">
+              <a href={`#product-${products[0].id}`}>Snowboard</a>
+              {extremeProducts.map((product) => (
+                <a key={product.id} href={`#product-${product.id}`}>{product.sport}</a>
+              ))}
+            </nav>
           </div>
           <p className="section-aside">Tres piezas.<br />Una línea alpina.</p>
         </div>
