@@ -64,6 +64,7 @@ a { text-decoration: none; }
 
 /* 03: open catalog layout, deliberately calm. */
 .collection-section { padding-block: 30px 104px; }
+.discipline-section { padding-block: 96px 120px; border-top: 1px solid var(--color-rule-light); }
 .section-intro { display: flex; align-items: end; justify-content: space-between; gap: 32px; margin-bottom: 42px; }
 .section-intro .display-heading { margin-top: 24px; }
 .section-aside { padding-bottom: 8px; font-size: 1rem; line-height: 1.6; color: var(--color-muted-light); }
@@ -120,7 +121,10 @@ a { text-decoration: none; }
 .detail-image-label { position: absolute; top: 22px; left: 22px; font-size: .75rem; letter-spacing: .08em; color: var(--color-ink); }
 .enlarge-button { position: absolute; bottom: 18px; right: 18px; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 10px 14px; background: var(--color-snow); color: var(--color-ink); font-size: .75rem; }
 .detail-copy { padding-top: 8px; }
-.product-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 24px 34px; }
+.product-switcher { margin-block: 24px 34px; }
+.switcher-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.switcher-group + .switcher-group { margin-top: 18px; }
+.switcher-label { flex-basis: 100%; margin-bottom: 2px; color: var(--color-muted-dark); font-size: .75rem; letter-spacing: .12em; }
 .product-switcher button { min-height: 44px; padding: 10px 16px; border: 1px solid var(--color-control-dark); font-size: .75rem; }
 .product-switcher button[aria-pressed="true"] { color: var(--color-ink); background: var(--color-snow); border-color: var(--color-snow); }
 .selected-product-name { margin-bottom: 12px; font-size: .75rem; letter-spacing: .13em; text-transform: uppercase; color: var(--color-lime); }
@@ -198,6 +202,7 @@ html:has(.product-dialog[open]) { overflow: hidden; }
   .preparation-jacket > div { aspect-ratio: 1; }
   .preparation-goggles { margin-top: 42px; }
   .collection-section { padding-block: 12px 64px; }
+  .discipline-section { padding-block: 64px 80px; }
   .section-intro { align-items: start; margin-bottom: 30px; }
   .section-intro .display-heading { font-size: clamp(2.8rem, 8vw, 4.2rem); }
   .section-aside { display: none; }

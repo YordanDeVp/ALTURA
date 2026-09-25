@@ -5,9 +5,25 @@ import { useRef, useState } from "react";
 import ActionScene from "@/components/action-scene";
 import { ArrowIcon, ExpandIcon } from "@/components/icons";
 
-export default function ProductExperience({ products }) {
+function ProductCard({ product, onSelect }) {
+  return (
+    <article className="product-card">
+      <a className="product-image" href="#detalles" aria-label={`Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>
+        <Image src={product.image} alt={product.alt} fill sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw" />
+        <span className="product-index">{product.number} / {product.sport || "ALTURA"}</span>
+        <span className="product-arrow"><ArrowIcon diagonal /></span>
+      </a>
+      <div className="product-card-heading"><h3>{product.name}</h3><span>{product.color}</span></div>
+      <p className="product-category">{product.sport ? `${product.sport} · ${product.category}` : product.category}</p>
+      <a className="text-link" href="#detalles" onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>Ver detalles <ArrowIcon diagonal /></a>
+    </article>
+  );
+}
+
+export default function ProductExperience({ products, extremeProducts }) {
+  const allProducts = [...products, ...extremeProducts];
   const [selectedId, setSelectedId] = useState(products[0].id);
-  const selected = products.find((product) => product.id === selectedId);
+  const selected = allProducts.find((product) => product.id === selectedId);
   const dialogRef = useRef(null);
 
   function selectProduct(id) {
@@ -28,20 +44,26 @@ export default function ProductExperience({ products }) {
             <p className="eyebrow"><span>03</span> LA COLECCIÓN</p>
             <h2 id="collection-heading" className="display-heading">Equipa tu<br />próxima línea.</h2>
           </div>
-          <p className="section-aside">Tres piezas.<br />Una misma dirección.</p>
+          <p className="section-aside">Tres piezas.<br />Una línea alpina.</p>
         </div>
         <div className="product-grid">
           {products.map((product) => (
-            <article className="product-card" key={product.id}>
-              <a className="product-image" href="#detalles" aria-label={`Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); selectProduct(product.id); }}>
-                <Image src={product.image} alt={product.alt} fill sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw" />
-                <span className="product-index">{product.number} / ALTURA</span>
-                <span className="product-arrow"><ArrowIcon diagonal /></span>
-              </a>
-              <div className="product-card-heading"><h3>{product.name}</h3><span>{product.color}</span></div>
-              <p className="product-category">{product.category}</p>
-              <a className="text-link" href="#detalles" onClick={(event) => { event.preventDefault(); selectProduct(product.id); }}>Ver detalles <ArrowIcon diagonal /></a>
-            </article>
+            <ProductCard key={product.id} product={product} onSelect={selectProduct} />
+          ))}
+        </div>
+      </section>
+
+      <section id="disciplinas" className="discipline-section section-shell" aria-labelledby="discipline-heading">
+        <div className="section-intro">
+          <div>
+            <p className="eyebrow"><span>03+</span> NUEVAS LÍNEAS</p>
+            <h2 id="discipline-heading" className="display-heading">Cada terreno.<br />Su propia línea.</h2>
+          </div>
+          <p className="section-aside">Seis deportes.<br />Seis piezas para explorar.</p>
+        </div>
+        <div className="product-grid">
+          {extremeProducts.map((product) => (
+            <ProductCard key={product.id} product={product} onSelect={selectProduct} />
           ))}
         </div>
       </section>
@@ -58,7 +80,14 @@ export default function ProductExperience({ products }) {
           <div className="detail-copy">
             <p className="eyebrow eyebrow-light"><span>05</span> LOS DETALLES</p>
             <div className="product-switcher" aria-label="Seleccionar producto">
-              {products.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.shortName}</button>)}
+              <div className="switcher-group">
+                <span className="switcher-label">SNOWBOARD</span>
+                {products.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.shortName}</button>)}
+              </div>
+              <div className="switcher-group">
+                <span className="switcher-label">OTRAS DISCIPLINAS</span>
+                {extremeProducts.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.sport}</button>)}
+              </div>
             </div>
             <p className="selected-product-name" aria-live="polite">{selected.name}</p>
             <h2 id="detail-heading" tabIndex={-1} className="display-heading">{selected.headline}</h2>
@@ -79,7 +108,7 @@ export default function ProductExperience({ products }) {
         <div className="closing-scene">
           <Image src="/images/hero-poster.jpeg" alt="" fill sizes="100vw" />
           <div className="closing-content section-shell">
-            <p className="eyebrow eyebrow-light">LA MONTAÑA TE ESPERA</p>
+            <p className="eyebrow eyebrow-light">EL PRÓXIMO TERRENO TE ESPERA</p>
             <h2 className="display-heading">Tu próxima línea<br />empieza aquí.</h2>
             <a className="button button-lime" href="#coleccion">Explorar colección <ArrowIcon /></a>
           </div>

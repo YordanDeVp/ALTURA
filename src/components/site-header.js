@@ -17,6 +17,7 @@ export default function SiteHeader() {
         <nav className="desktop-nav" aria-label="Navegación principal">
           <a href="#preparacion">La experiencia</a>
           <a href="#coleccion">Colección</a>
+          <a href="#disciplinas">Deportes</a>
           <a href="#detalles">Los detalles</a>
         </nav>
         <a className="nav-collection" href="#coleccion">Explorar colección <ArrowIcon /></a>
@@ -27,6 +28,7 @@ export default function SiteHeader() {
       <nav id="mobile-navigation" className="mobile-navigation" aria-label="Navegación móvil" hidden={!menuOpen}>
         <a href="#preparacion" onClick={closeMenu}>La experiencia</a>
         <a href="#coleccion" onClick={closeMenu}>Colección</a>
+        <a href="#disciplinas" onClick={closeMenu}>Deportes</a>
         <a href="#detalles" onClick={closeMenu}>Los detalles</a>
       </nav>
     </header>

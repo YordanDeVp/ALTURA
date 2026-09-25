@@ -4,6 +4,7 @@ import HeroMedia from "@/components/hero-media";
 import ProductExperience from "@/components/product-experience";
 import { ArrowIcon } from "@/components/icons";
 import { products } from "@/lib/products";
+import { extremeProducts } from "@/lib/extreme-products";
 
 export default function Home() {
   return (
@@ -47,7 +48,7 @@ export default function Home() {
           </div>
         </section>
 
-        <ProductExperience products={products} />
+        <ProductExperience products={products} extremeProducts={extremeProducts} />
       </main>
       <footer className="site-footer">
         <div className="section-shell footer-inner">
