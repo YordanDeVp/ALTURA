@@ -1,6 +1,6 @@
 # ALTURA
 
-Base de la landing de snowboard definida en [DESIGN.md](./DESIGN.md).
+Preview funcional de la landing de deportes extremos definida en [DESIGN.md](./DESIGN.md). La línea original de snowboard abre el recorrido; la colección también incluye prendas conceptuales para otros seis deportes.
 
 ## Tecnologías
 
@@ -13,7 +13,7 @@ Base de la landing de snowboard definida en [DESIGN.md](./DESIGN.md).
 ## Desarrollo local
 
 Se recomienda Node.js 24, indicado en `.nvmrc`. El mínimo declarado es Node.js 20.9.
-No se requieren variables de entorno para esta base.
+No se requieren variables de entorno para esta preview.
 
 ```sh
 npm ci
@@ -45,14 +45,23 @@ src/
   app/
     globals.css       Integración de Tailwind 4 y estilos base
     layout.js         Layout raíz, idioma español y metadata
-    page.js           Página inicial de la base
+    page.js           Hero, preparación y composición de la landing
+  components/
+    hero-media.js     Video con pausa y fallback de imagen
+    site-header.js    Navegación adaptable y menú móvil
+    action-scene.js   Escena vinculada al scroll y puntos de producto
+    product-experience.js  Colecciones, detalles y ampliación de imágenes
+    icons.js          Iconos de interfaz
   lib/
+    products.js       Datos y rutas de las tres piezas conceptuales
+    extreme-products.js  Seis prendas conceptuales por deporte
     site.js           Nombre, descripción y configuración del sitio
   styles/
     tokens.css        Tokens canónicos de ALTURA tomados de DESIGN.md
+    landing.css       Composición editorial y estilos responsive
 public/
-  images/             Imágenes futuras del hero y de los productos
-  videos/             Videos futuros del bloque de acción
+  images/             Fotos de producto, poster y escena de acción
+  videos/             Video del hero
 ```
 
 El alias `@/` apunta a `src/`. Los componentes son de servidor por defecto;
@@ -71,20 +80,49 @@ las directivas de Tailwind 3 ni un plugin separado de Autoprefixer.
 Las fuentes actuales son alternativas de sistema; las fuentes finales se
 incorporarán cuando se aprueben los archivos correspondientes.
 
-## Alcance de esta base
+## Recorrido e interacciones
 
-La página inicial permite comprobar Next.js, JavaScript y los estilos de
-ALTURA. Todavía no implementa la landing completa, sus imágenes ni el
-scrollytelling. La construcción seguirá este orden:
+1. Hero independiente con el video aportado, poster, reproducción silenciosa en
+   loop y control de pausa. Se pausa al salir de la vista o esconder la pestaña.
+2. Preparación con recortes editoriales de la chaqueta y las gafas.
+3. Colección de snowboard y una segunda galería con prendas para skateboarding,
+   longboard, surf, wakeboard, esquí y kitesurf. Todas abren una ficha ampliable.
+4. Snowboarder en pleno salto: escena fija temporalmente en escritorio, zoom de
+   ida y vuelta vinculado al scroll y puntos interactivos de producto.
+5. Detalles con selector de pieza, acordeones, ampliación de foto y cierre visual.
 
-1. Hero nuevo en la cresta de la montaña.
-2. Preparación.
-3. Colección e imágenes de los productos.
-4. Snowboarder en acción y animación.
-5. Detalles de producto y cierre.
+En móvil, la cuarta sección permanece en el flujo normal sin una secuencia
+fija prolongada. Con `prefers-reduced-motion`, se desactiva el movimiento ligado
+al scroll y el video no arranca automáticamente; puede iniciarse manualmente.
+La navegación, los selectores y la ampliación funcionan con teclado. Escape
+cierra el menú móvil o la imagen ampliada.
 
-Esta configuración no publica el sitio ni incluye compra, cuentas o servicios
-externos. Mantener fuera de Git `.next`, `node_modules` y los archivos `.env`.
+La escena de acción usa una imagen animada mediante CSS, no un segundo video ni
+una secuencia de fotogramas. La preview no incluye compra, cuentas ni servicios
+externos. Los nombres y textos son conceptuales: no se presentan precios ni
+prestaciones técnicas sin un catálogo validado.
+
+## Archivos multimedia
+
+- `public/images/hero-poster.jpeg`: poster del hero y panorama del cierre.
+- `public/videos/hero.mp4`: video del hero.
+- `public/images/jacket.jpeg`: chaqueta Ridge.
+- `public/images/pants.jpeg`: pantalón Line.
+- `public/images/glasses.jpeg`: gafas Vision.
+- `public/images/snowboard-action.png`: imagen de referencia del salto.
+- `public/images/skate-hoodie.png`, `longboard-windbreaker.png` y
+  `ski-jacket.png`: prendas para deportes de calle y nieve.
+- `public/images/surf-wetsuit.png`, `wakeboard-shorts.png` y
+  `kitesurf-top.png`: prendas para deportes de agua.
+
+El poster se normalizó desde `hero-poster.webp.jpeg` a `.jpeg`, su formato real.
+Las imágenes se sirven con `next/image` y carga diferida salvo el poster del hero.
+Para cambiar un producto, actualizar su entrada en `src/lib/products.js` o
+`src/lib/extreme-products.js`, incluidos dimensiones y texto alternativo. Para sustituir el video, conservar
+su ruta o actualizar `src/components/hero-media.js`.
+
+El servidor de desarrollo es una preview local, no un despliegue público.
+Mantener fuera de Git `.next`, `node_modules` y los archivos `.env`.
 
 ## Documentación consultada
 

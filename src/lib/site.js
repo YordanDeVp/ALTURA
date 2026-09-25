@@ -1,7 +1,7 @@
 export const site = {
   name: "ALTURA",
-  title: "ALTURA — Elige tu línea",
+  title: "ALTURA — Ropa para deportes extremos",
   description:
-    "Una colección conceptual de ropa y equipo para snowboard. La montaña pone el terreno. Tú eliges cómo recorrerlo.",
+    "Explora la colección conceptual ALTURA: prendas para snowboard, skateboarding, longboard, surf, wakeboard, esquí y kitesurf.",
   locale: "es",
 };

@@ -1,14 +1,14 @@
-# ALTURA — Cinematic Snowboard Apparel
+# ALTURA — Cinematic Extreme Sports Apparel
 
 > Elige tu línea. A quiet moment on the ridge, equipment worth examining, and a suspended jump that brings the collection to life.
 
 **Theme:** mixed — snow-white editorial commerce, charcoal technical detail, alpine photography, and a restrained lime accent.
 
-**Status:** provisional design specification. ALTURA and the product names are working names. Product imagery is conceptual until matched to a real catalog. This document defines the experience; it does not claim that the website, new product assets, or videos have already been produced.
+**Status:** working design specification for the implemented preview. ALTURA and all product names are provisional. Product imagery is conceptual until matched to a real catalog; technical performance and purchase flow remain undefined.
 
 **Language:** design instructions and generation prompts in English; all customer-facing website copy in Spanish.
 
-**Implementation stack:** Next.js with App Router, JavaScript/JSX, and Tailwind CSS 4. Application source lives in `src/`, with `@/` as its import alias. Keep the canonical design values in `src/styles/tokens.css` and map them to Tailwind utilities through `@theme inline` in `src/app/globals.css`. Use the PostCSS integration for Tailwind 4. The initial application scaffold is configured separately from the full landing implementation; final imagery and animation remain pending.
+**Implementation stack:** Next.js with App Router, JavaScript/JSX, and Tailwind CSS 4. Application source lives in `src/`, with `@/` as its import alias. Keep the canonical design values in `src/styles/tokens.css` and map them to Tailwind utilities through `@theme inline` in `src/app/globals.css`. Use the PostCSS integration for Tailwind 4.
 
 ## 1. Approved direction and scope
 
@@ -18,7 +18,7 @@ The earlier landing mockup is a reference for art direction, not the final secti
 
 1. A **new hero image** introduces the mountain before the descent.
 2. A short preparation scene bridges emotion and equipment.
-3. **Product images and the collection appear in the third section.**
+3. **Product images and the snowboard collection appear in the third section, followed by six additional sportswear pieces.**
 4. **The existing airborne snowboarder image and animation appear in the fourth section.**
 5. Product details, selection, and the closing invitation complete the experience.
 
@@ -99,7 +99,7 @@ Use motion to direct attention between these moments. During product reading and
 
 - Chapter label: **03 — LA COLECCIÓN**.
 - Headline: **Equipa tu próxima línea.**
-- Supporting line: **Tres piezas. Una misma dirección.**
+- Supporting line: **Tres piezas. Una línea alpina.**
 
 **Concept products:**
 
@@ -116,6 +116,16 @@ Generate separate, original product photographs. The product images embedded in 
 Only render color choices when there are corresponding approved images or actual variants. Do not use decorative swatches that imply unavailable products. Omit price, availability, sizing, and purchase controls until those facts and workflows exist.
 
 **Motion:** a gentle entrance reveal at most. Product names and actions never depend on hover. All three products must be discoverable without a carousel.
+
+### 03+ — Other lines · `#disciplinas`
+
+**Purpose:** extend the snowboard collection into six additional extreme sports without changing the alpine hero or the fourth chapter's snowboard action scene.
+
+**Copy:** **NUEVAS LÍNEAS** and **Cada terreno. Su propia línea.**
+
+**Concept garments:** Sudadera Street for skateboarding, Chaqueta Coastline for longboard, Traje Break for surf, Shorts Current for wakeboard, Chaqueta Summit for skiing, and Camiseta Drift for kitesurf. These are apparel concepts, not replacements for each sport's board, helmet, protective gear, flotation equipment, or other essential equipment.
+
+Use six separate studio product photographs with the same calm gray background and full-garment framing as the alpine line. Each card names the sport, the garment and its visible color, then links to the shared detail section. Keep the six cards readable without a carousel. Do not imply tested safety or performance specifications.
 
 ### 04 — The jump · `#en-accion`
 
@@ -147,7 +157,7 @@ Hotspots must follow the item as framing or video position changes. Use tracked 
 
 **Purpose:** support examination and comparison after the action.
 
-**Composition:** near-black technical-detail band. A large light studio image occupies approximately half the desktop width; the other half contains the selected product name, description, detail controls, and navigation between the three products. On mobile, put imagery before the text and remove sticky behavior.
+**Composition:** near-black technical-detail band. A large light studio image occupies approximately half the desktop width; the other half contains the selected product name, description, detail controls, and grouped navigation between the nine garments. On mobile, put imagery before the text and remove sticky behavior.
 
 **Initial copy:**
 
@@ -324,7 +334,7 @@ An open image-and-caption composition with no heavy container. Show a consistent
 
 ### Product selector and detail rows
 
-Keep the three product names visible in the detail section. If implemented as tabs, provide the corresponding keyboard behavior and selected-state semantics. Use genuine buttons for expandable detail rows, with expanded-state information and stable focus. Do not open every row by default into a long block of speculative specifications.
+Keep the three snowboard choices and six additional sports visible in grouped detail controls. The selected-state semantics must be clear. Use genuine buttons for expandable detail rows, with expanded-state information and stable focus. Do not open every row by default into a long block of speculative specifications.
 
 ### Image enlargement and quick view
 
@@ -342,6 +352,19 @@ Optional and unobtrusive. A small progress rail may be used on wide screens, but
 - [Earlier landing mockup](C:/Users/YRSM/.codex/generated_images/01a08eaa-0880-7a02-9b98-d0d559ef941b/exec-98ea7d17-5cef-45b7-8272-9a799ec1cf81.png) — available visual reference only. Its original hero and product order are superseded by this document.
 
 These are local reference links, not production website URLs. When implementing, copy selected source assets into the project and create appropriately sized web derivatives. Keep originals intact.
+
+### Multisport concept photographs
+
+The six new catalog images live in `public/images/`. They were created with the built-in image generation tool using this shared prompt direction: **product-mockup for the ALTURA landing; one unbranded sports garment, fully visible from the front; premium realistic apparel photography; vertical 4:5 framing on a soft light-gray studio background with natural shadow and generous margins; rugged, restrained outdoor-sports styling; visible fabric texture and seams; no person, equipment, text, logo, watermark, collage, or extra garments.**
+
+Subject and palette per image:
+
+- `skate-hoodie.png`: oversized charcoal skate hoodie with olive side panels.
+- `longboard-windbreaker.png`: relaxed terracotta longboard windbreaker with charcoal sleeves and hood.
+- `surf-wetsuit.png`: full-length graphite surf wetsuit with slate-blue shoulder panels.
+- `wakeboard-shorts.png`: graphite knee-length wakeboard shorts with petrol-blue side panels.
+- `ski-jacket.png`: olive ski jacket with cream shoulder panels and charcoal trim.
+- `kitesurf-top.png`: fitted deep-teal long-sleeve kitesurf top with graphite sleeves and olive seam detailing.
 
 ### Assets still to produce
 

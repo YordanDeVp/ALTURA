@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
+@import "../styles/landing.css";
 
 /* Semantic utilities map to the canonical tokens without repeating values. */
 @theme inline {
