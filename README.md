@@ -1,6 +1,6 @@
 # ALTURA
 
-Preview funcional de la landing de snowboard definida en [DESIGN.md](./DESIGN.md).
+Preview funcional de la landing de deportes extremos definida en [DESIGN.md](./DESIGN.md). La línea original de snowboard abre el recorrido; la colección también incluye prendas conceptuales para otros seis deportes.
 
 ## Tecnologías
 
@@ -50,10 +50,11 @@ src/
     hero-media.js     Video con pausa y fallback de imagen
     site-header.js    Navegación adaptable y menú móvil
     action-scene.js   Escena vinculada al scroll y puntos de producto
-    product-experience.js  Colección, detalles y ampliación de imágenes
+    product-experience.js  Colecciones, detalles y ampliación de imágenes
     icons.js          Iconos de interfaz
   lib/
     products.js       Datos y rutas de las tres piezas conceptuales
+    extreme-products.js  Seis prendas conceptuales por deporte
     site.js           Nombre, descripción y configuración del sitio
   styles/
     tokens.css        Tokens canónicos de ALTURA tomados de DESIGN.md
@@ -84,7 +85,8 @@ incorporarán cuando se aprueben los archivos correspondientes.
 1. Hero independiente con el video aportado, poster, reproducción silenciosa en
    loop y control de pausa. Se pausa al salir de la vista o esconder la pestaña.
 2. Preparación con recortes editoriales de la chaqueta y las gafas.
-3. Colección con las tres imágenes de producto y accesos a sus detalles.
+3. Colección de snowboard y una segunda galería con prendas para skateboarding,
+   longboard, surf, wakeboard, esquí y kitesurf. Todas abren una ficha ampliable.
 4. Snowboarder en pleno salto: escena fija temporalmente en escritorio, zoom de
    ida y vuelta vinculado al scroll y puntos interactivos de producto.
 5. Detalles con selector de pieza, acordeones, ampliación de foto y cierre visual.
@@ -108,11 +110,15 @@ prestaciones técnicas sin un catálogo validado.
 - `public/images/pants.jpeg`: pantalón Line.
 - `public/images/glasses.jpeg`: gafas Vision.
 - `public/images/snowboard-action.png`: imagen de referencia del salto.
+- `public/images/skate-hoodie.png`, `longboard-windbreaker.png` y
+  `ski-jacket.png`: prendas para deportes de calle y nieve.
+- `public/images/surf-wetsuit.png`, `wakeboard-shorts.png` y
+  `kitesurf-top.png`: prendas para deportes de agua.
 
 El poster se normalizó desde `hero-poster.webp.jpeg` a `.jpeg`, su formato real.
 Las imágenes se sirven con `next/image` y carga diferida salvo el poster del hero.
-Para cambiar un producto, actualizar su entrada en `src/lib/products.js`,
-incluidos dimensiones y texto alternativo. Para sustituir el video, conservar
+Para cambiar un producto, actualizar su entrada en `src/lib/products.js` o
+`src/lib/extreme-products.js`, incluidos dimensiones y texto alternativo. Para sustituir el video, conservar
 su ruta o actualizar `src/components/hero-media.js`.
 
 El servidor de desarrollo es una preview local, no un despliegue público.
