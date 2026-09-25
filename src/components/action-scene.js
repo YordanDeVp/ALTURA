@@ -54,7 +54,7 @@ export default function ActionScene({ products, onSelect }) {
           <div className="action-image-canvas">
             <Image src="/images/snowboard-action.png" alt="Snowboarder en pleno salto con la tabla en diagonal y una cordillera nevada al fondo" fill sizes="100vw" />
             {products.map((product) => (
-              <button key={product.id} className="product-hotspot" style={{ left: `${product.point.x}%`, top: `${product.point.y}%` }} aria-label={`Explorar ${product.name}`} aria-pressed={activeId === product.id} onClick={() => setActiveId(product.id)}>{product.number}</button>
+              <button key={product.id} className="product-hotspot" style={{ left: `${product.point.x}%`, top: `${product.point.y}%` }} aria-label={`${product.number}, explorar ${product.name}`} aria-pressed={activeId === product.id} onClick={() => setActiveId(product.id)}>{product.number}</button>
             ))}
           </div>
           <div className="action-shade" />
@@ -67,7 +67,7 @@ export default function ActionScene({ products, onSelect }) {
           <div className="quick-view-slot">
             {active && (
               <div className="quick-view">
-                <button className="quick-view-close" aria-label="Cerrar detalle rápido" onClick={closeQuickView}>×</button>
+                <button className="quick-view-close" aria-label="Cerrar detalle rápido" onClick={closeQuickView}><span aria-hidden="true">×</span></button>
                 <span className="eyebrow">{active.number} / {active.category}</span>
                 <h3>{active.name}</h3>
                 <a href="#detalles" onClick={(event) => { event.preventDefault(); onSelect(active.id); }}>Ver detalles <ArrowIcon /></a>

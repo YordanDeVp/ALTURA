@@ -25,7 +25,7 @@ export default function Home() {
           </div>
           <div className="hero-bottom section-shell">
             <span><b>01</b> EL PUNTO DE PARTIDA</span>
-            <a href="#preparacion" aria-label="Bajar a la siguiente sección">Desliza para descubrir <span aria-hidden="true">↓</span></a>
+            <a href="#preparacion">Desliza para descubrir <span aria-hidden="true">↓</span></a>
           </div>
         </section>
 

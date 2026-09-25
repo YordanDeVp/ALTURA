@@ -8,7 +8,7 @@ import { ArrowIcon, ExpandIcon } from "@/components/icons";
 function ProductCard({ product, onSelect }) {
   return (
     <article className="product-card">
-      <a className="product-image" href="#detalles" aria-label={`Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>
+      <a className="product-image" href="#detalles" aria-label={`${product.number} / ${product.sport || "ALTURA"} — Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>
         <Image src={product.image} alt={product.alt} fill sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw" />
         <span className="product-index">{product.number} / {product.sport || "ALTURA"}</span>
         <span className="product-arrow"><ArrowIcon diagonal /></span>
@@ -79,13 +79,13 @@ export default function ProductExperience({ products, extremeProducts }) {
           </div>
           <div className="detail-copy">
             <p className="eyebrow eyebrow-light"><span>05</span> LOS DETALLES</p>
-            <div className="product-switcher" aria-label="Seleccionar producto">
-              <div className="switcher-group">
-                <span className="switcher-label">SNOWBOARD</span>
+            <div className="product-switcher">
+              <div className="switcher-group" role="group" aria-labelledby="snowboard-switcher-label">
+                <span id="snowboard-switcher-label" className="switcher-label">SNOWBOARD</span>
                 {products.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.shortName}</button>)}
               </div>
-              <div className="switcher-group">
-                <span className="switcher-label">OTRAS DISCIPLINAS</span>
+              <div className="switcher-group" role="group" aria-labelledby="other-disciplines-switcher-label">
+                <span id="other-disciplines-switcher-label" className="switcher-label">OTRAS DISCIPLINAS</span>
                 {extremeProducts.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.sport}</button>)}
               </div>
             </div>
@@ -117,7 +117,7 @@ export default function ProductExperience({ products, extremeProducts }) {
 
       <dialog ref={dialogRef} className="product-dialog" aria-label={`Imagen ampliada de ${selected.name}`} onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current.close(); }}>
         <div className="product-dialog-inner">
-          <button className="dialog-close" aria-label="Cerrar imagen ampliada" onClick={() => dialogRef.current.close()}>Cerrar <span aria-hidden="true">×</span></button>
+          <button className="dialog-close" onClick={() => dialogRef.current.close()}>Cerrar <span aria-hidden="true">×</span></button>
           <Image src={selected.image} alt={selected.alt} width={selected.width} height={selected.height} sizes="(max-width: 767px) 90vw, 70vw" />
           <p>{selected.name} / {selected.color}</p>
         </div>
