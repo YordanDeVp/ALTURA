@@ -15,9 +15,9 @@ export default function Home() {
           <HeroMedia />
           <div className="hero-shade" />
           <div className="hero-content section-shell">
-            <p className="eyebrow eyebrow-light hero-eyebrow"><span /> COLECCIÓN ALPINA / ALTURA</p>
+            <p className="eyebrow eyebrow-light hero-eyebrow"><span /> ALTURA / DEPORTES EXTREMOS</p>
             <h1 id="hero-heading">Toda línea<br />empieza con<br />una decisión.</h1>
-            <p className="hero-description">La montaña pone el terreno.<br />Tú eliges cómo recorrerlo.</p>
+            <p className="hero-description">Nieve, asfalto, agua y viento.<br />Tú eliges la próxima línea.</p>
             <div className="hero-actions">
               <a href="#coleccion" className="button button-lime">Explorar colección <ArrowIcon /></a>
               <a href="#preparacion" className="hero-secondary">Descubrir la experiencia</a>

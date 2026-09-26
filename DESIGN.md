@@ -57,7 +57,7 @@ Use motion to direct attention between these moments. During product reading and
 
 ### 01 — Before the first turn · `#inicio`
 
-**Purpose:** establish anticipation and introduce the brand with a new image.
+**Purpose:** establish anticipation with the alpine image while making the wider multisport collection clear from the first screen.
 
 **Imagery:** a rider seen from behind on a snowy ridge, holding a snowboard and looking toward the descent. Match the olive-brown jacket, charcoal pants, black helmet, and blue-lens equipment language of the reference. Use pale alpine light, atmospheric distance, and clear negative space for text. The rider is grounded on the ridge rather than airborne.
 
@@ -65,9 +65,9 @@ Use motion to direct attention between these moments. During product reading and
 
 **Copy:**
 
-- Eyebrow: **ALTURA / SNOW COLLECTION**.
+- Eyebrow: **ALTURA / DEPORTES EXTREMOS**.
 - Headline: **Toda línea empieza con una decisión.**
-- Supporting line: **La montaña pone el terreno. Tú eliges cómo recorrerlo.**
+- Supporting line: **Nieve, asfalto, agua y viento. Tú eliges la próxima línea.**
 - Primary action: **Explorar colección**.
 - Secondary action: **Descubrir la experiencia** → `#preparacion`.
 
