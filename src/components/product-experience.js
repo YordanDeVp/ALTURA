@@ -1,21 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ActionScene from "@/components/action-scene";
 import { ArrowIcon, ExpandIcon } from "@/components/icons";
 
 function ProductCard({ product, onSelect }) {
   return (
     <article id={`product-${product.id}`} className="product-card">
-      <a className="product-image" href="#detalles" aria-label={`${product.number} / ${product.sport || "ALTURA"} — Ver detalles de ${product.name}`} onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>
+      <a className="product-image" href={`?producto=${product.id}#detalles`} aria-label={`${product.number} / ${product.sport || "ALTURA"} — Ver detalles de ${product.name}`} onClick={(event) => onSelect(event, product.id)}>
         <Image src={product.image} alt={product.alt} fill sizes="(max-width: 639px) 90vw, (max-width: 1023px) 45vw, 30vw" />
         <span className="product-index">{product.number} / {product.sport || "ALTURA"}</span>
         <span className="product-arrow"><ArrowIcon diagonal /></span>
       </a>
       <div className="product-card-heading"><h3>{product.name}</h3><span>{product.color}</span></div>
       <p className="product-category">{product.sport ? `${product.sport} · ${product.category}` : product.category}</p>
-      <a className="text-link" href="#detalles" onClick={(event) => { event.preventDefault(); onSelect(product.id); }}>Ver detalles <ArrowIcon diagonal /></a>
+      <a className="text-link" href={`?producto=${product.id}#detalles`} onClick={(event) => onSelect(event, product.id)}>Ver detalles<span className="sr-only"> de {product.name}</span> <ArrowIcon diagonal /></a>
     </article>
   );
 }
@@ -26,14 +26,36 @@ export default function ProductExperience({ products, extremeProducts }) {
   const selected = allProducts.find((product) => product.id === selectedId);
   const dialogRef = useRef(null);
 
-  function selectProduct(id) {
+  useEffect(() => {
+    function syncSelection() {
+      const id = new URLSearchParams(window.location.search).get("producto");
+      setSelectedId([...products, ...extremeProducts].some((product) => product.id === id) ? id : products[0].id);
+    }
+
+    syncSelection();
+    window.addEventListener("popstate", syncSelection);
+    return () => window.removeEventListener("popstate", syncSelection);
+  }, [products, extremeProducts]);
+
+  function selectProduct(id, scrollToDetails = true) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("producto", id);
+    url.hash = "detalles";
+    window.history[scrollToDetails ? "pushState" : "replaceState"](null, "", `${url.pathname}${url.search}${url.hash}`);
     setSelectedId(id);
+    if (!scrollToDetails) return;
     window.requestAnimationFrame(() => {
       const heading = document.getElementById("detail-heading");
       const section = document.getElementById("detalles");
       heading?.focus({ preventScroll: true });
       section?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
     });
+  }
+
+  function openProduct(event, id) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    selectProduct(id);
   }
 
   return (
@@ -54,7 +76,7 @@ export default function ProductExperience({ products, extremeProducts }) {
         </div>
         <div className="product-grid">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} onSelect={selectProduct} />
+            <ProductCard key={product.id} product={product} onSelect={openProduct} />
           ))}
         </div>
       </section>
@@ -69,12 +91,12 @@ export default function ProductExperience({ products, extremeProducts }) {
         </div>
         <div className="product-grid">
           {extremeProducts.map((product) => (
-            <ProductCard key={product.id} product={product} onSelect={selectProduct} />
+            <ProductCard key={product.id} product={product} onSelect={openProduct} />
           ))}
         </div>
       </section>
 
-      <ActionScene products={products} onSelect={selectProduct} />
+      <ActionScene products={products} onSelect={openProduct} />
 
       <section id="detalles" className="product-detail-section" aria-labelledby="detail-heading">
         <div className="product-detail-inner section-shell">
@@ -88,11 +110,11 @@ export default function ProductExperience({ products, extremeProducts }) {
             <div className="product-switcher">
               <div className="switcher-group" role="group" aria-labelledby="snowboard-switcher-label">
                 <span id="snowboard-switcher-label" className="switcher-label">SNOWBOARD</span>
-                {products.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.shortName}</button>)}
+                {products.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => selectProduct(product.id, false)}>{product.shortName}</button>)}
               </div>
               <div className="switcher-group" role="group" aria-labelledby="other-disciplines-switcher-label">
                 <span id="other-disciplines-switcher-label" className="switcher-label">OTRAS DISCIPLINAS</span>
-                {extremeProducts.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => setSelectedId(product.id)}>{product.sport}</button>)}
+                {extremeProducts.map((product) => <button key={product.id} aria-pressed={selectedId === product.id} onClick={() => selectProduct(product.id, false)}>{product.sport}</button>)}
               </div>
             </div>
             <p className="selected-product-name" aria-live="polite">{selected.name}</p>

@@ -111,7 +111,7 @@ Generate separate, original product photographs. The product images embedded in 
 
 **Presentation:** three open product columns on desktop, two where space requires, and one on narrow mobile screens. Use a consistent 4:5 product canvas, matched studio lighting, and comparable visual scale. Keep each garment fully visible. Show product name, a short category label, and **Ver detalles**.
 
-**Interaction:** selecting **Ver detalles** selects that item in section 05, scrolls to the detail heading, and gives keyboard users a clear focus destination. The initial detail view defaults to Chaqueta Ridge.
+**Interaction:** selecting **Ver detalles** selects that item in section 05, scrolls to the detail heading, and gives keyboard users a clear focus destination. Each product detail has a shareable URL that restores its selection on reload or browser back navigation. The initial detail view defaults to Chaqueta Ridge.
 
 Only render color choices when there are corresponding approved images or actual variants. Do not use decorative swatches that imply unavailable products. Omit price, availability, sizing, and purchase controls until those facts and workflows exist.
 

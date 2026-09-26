@@ -70,7 +70,7 @@ export default function ActionScene({ products, onSelect }) {
                 <button className="quick-view-close" aria-label="Cerrar detalle rápido" onClick={closeQuickView}><span aria-hidden="true">×</span></button>
                 <span className="eyebrow">{active.number} / {active.category}</span>
                 <h3>{active.name}</h3>
-                <a href="#detalles" onClick={(event) => { event.preventDefault(); onSelect(active.id); }}>Ver detalles <ArrowIcon /></a>
+                <a href={`?producto=${active.id}#detalles`} onClick={(event) => onSelect(event, active.id)}>Ver detalles<span className="sr-only"> de {active.name}</span> <ArrowIcon /></a>
               </div>
             )}
           </div>

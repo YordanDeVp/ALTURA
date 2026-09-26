@@ -91,6 +91,9 @@ incorporarán cuando se aprueben los archivos correspondientes.
    ida y vuelta vinculado al scroll y puntos interactivos de producto.
 5. Detalles con selector de pieza, acordeones, ampliación de foto y cierre visual.
 
+Cada prenda tiene un enlace directo, por ejemplo `?producto=break#detalles` para
+el traje de surf. La selección se conserva al recargar o compartir esa URL.
+
 En móvil, la cuarta sección permanece en el flujo normal sin una secuencia
 fija prolongada. Con `prefers-reduced-motion`, se desactiva el movimiento ligado
 al scroll y el video no arranca automáticamente; puede iniciarse manualmente.
