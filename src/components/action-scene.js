@@ -3,17 +3,21 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ArrowIcon } from "@/components/icons";
+import { sceneStepAt } from "@/lib/action-scene-stage.mjs";
 
 export default function ActionScene({ products, onSelect }) {
   const sectionRef = useRef(null);
   const [activeId, setActiveId] = useState(null);
+  const [sceneStep, setSceneStep] = useState(0);
   const active = products.find((product) => product.id === activeId);
+  const featured = products[sceneStep - 1];
 
   useEffect(() => {
     const section = sectionRef.current;
     const preference = window.matchMedia("(min-width: 1024px) and (min-height: 650px) and (prefers-reduced-motion: no-preference)");
     let frame = 0;
     let lastProgress = -1;
+    let lastStep = 0;
 
     function update() {
       frame = 0;
@@ -21,9 +25,14 @@ export default function ActionScene({ products, onSelect }) {
       const progress = preference.matches && travel > 0 ? Math.max(0, Math.min(1, -section.getBoundingClientRect().top / travel)) : 0;
       if (progress === lastProgress) return;
       lastProgress = progress;
+      const step = sceneStepAt(progress);
+      if (step !== lastStep) {
+        lastStep = step;
+        setSceneStep(step);
+      }
       section.style.setProperty("--scene-progress", progress.toFixed(4));
-      section.style.setProperty("--scene-scale", (1 + Math.sin(progress * Math.PI) * 0.1).toFixed(4));
-      section.dataset.stage = progress > 0.2 && progress < 0.85 ? "detail" : "wide";
+      section.style.setProperty("--scene-scale", (1 + Math.sin(progress * Math.PI) * 0.08).toFixed(4));
+      section.dataset.stage = step > 0 && step < 4 ? "detail" : "wide";
     }
 
     function queueUpdate() {
@@ -53,14 +62,20 @@ export default function ActionScene({ products, onSelect }) {
         <div className="action-visual">
           <div className="action-image-canvas">
             <Image src="/images/snowboard-action.png" alt="Snowboarder en pleno salto con la tabla en diagonal y una cordillera nevada al fondo" fill sizes="100vw" />
-            {products.map((product) => (
-              <button key={product.id} className="product-hotspot" style={{ left: `${product.point.x}%`, top: `${product.point.y}%` }} aria-label={`${product.number}, explorar ${product.name}`} aria-pressed={activeId === product.id} onClick={() => setActiveId(product.id)}>{product.number}</button>
+            {products.map((product, index) => (
+              <button key={product.id} className="product-hotspot" data-featured={sceneStep === index + 1 || undefined} style={{ left: `${product.point.x}%`, top: `${product.point.y}%` }} aria-label={`${product.number}, explorar ${product.name}`} aria-pressed={activeId === product.id} onClick={() => setActiveId(product.id)}>{product.number}</button>
             ))}
           </div>
           <div className="action-shade" />
           <div className="action-heading section-shell">
             <p className="eyebrow eyebrow-light"><span>04</span> EN PLENA ACCIÓN</p>
             <h2 id="action-heading" className="display-heading">Todo cambia.<br />Tu foco, no.</h2>
+            <p className="action-invitation">Descubre las piezas de esta línea.</p>
+          </div>
+          <div className="action-scene-caption" aria-hidden="true" key={sceneStep}>
+            <span>{featured ? `${featured.number} / 03` : sceneStep === 4 ? "LA PRÓXIMA LÍNEA" : "LA LÍNEA ALPINA"}</span>
+            <strong>{featured ? featured.name : sceneStep === 4 ? "Cada detalle cuenta." : "Tres piezas. Una línea."}</strong>
+            <span>{featured ? featured.category : sceneStep === 4 ? "Elige una pieza para verla de cerca." : "Desliza para descubrirlas."}</span>
           </div>
         </div>
         <div className="action-bottom section-shell">
