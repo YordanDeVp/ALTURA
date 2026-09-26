@@ -6,7 +6,7 @@ import { ArrowIcon } from "@/components/icons";
 
 export default function ActionScene({ products, onSelect }) {
   const sectionRef = useRef(null);
-  const [activeId, setActiveId] = useState(products[0].id);
+  const [activeId, setActiveId] = useState(null);
   const active = products.find((product) => product.id === activeId);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function ActionScene({ products, onSelect }) {
               </div>
             )}
           </div>
-          <div className="action-product-controls" aria-label="Productos en esta escena">
+          <div className="action-product-controls" role="group" aria-label="Productos en esta escena">
             {products.map((product) => (
               <button id={`action-product-${product.id}`} key={product.id} aria-pressed={activeId === product.id} onClick={() => setActiveId(product.id)}><span>{product.number}</span>{product.shortName}</button>
             ))}
